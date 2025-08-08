@@ -9,13 +9,14 @@ package ca.sheridancollege.project;
  * @author diyac
  */
 public class Dealer extends Player {
+
     public Dealer(String name) {
         super(name);
     }
 
     @Override
     public void play() {
-        // Intentionally empty; use playAutomatically()
+        // Not used; dealer plays automatically
     }
 
     public void playAutomatically(Deck deck) {

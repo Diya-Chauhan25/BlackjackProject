@@ -4,6 +4,8 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.Scanner;
+
 /**
  *
  * @author diyac
@@ -19,13 +21,14 @@ public class BlackjackGame extends Game {
         player = new Player("Player") {
             @Override
             public void play() {
-                // Handled in main game loop
+                // Logic handled in main loop
             }
         };
         dealer = new Dealer("Dealer");
         getPlayers().add(player);
         getPlayers().add(dealer);
     }
+
     public void dealInitialCards() {
         player.getHand().add(deck.drawCard());
         dealer.getHand().add(deck.drawCard());
@@ -37,13 +40,10 @@ public class BlackjackGame extends Game {
         player.getHand().add(deck.drawCard());
     }
 
-    public void playerStand() {
-        System.out.println("Player stands.");
-    }
-
     public void dealerTurn() {
         dealer.playAutomatically(deck);
     }
+
     public void determineWinner() {
         int playerValue = player.getHandValue();
         int dealerValue = dealer.getHandValue();
@@ -61,7 +61,7 @@ public class BlackjackGame extends Game {
             System.out.println("It's a tie!");
         }
     }
-    
+
     public void resetGame() {
         player.getHand().clear();
         dealer.getHand().clear();
@@ -71,9 +71,11 @@ public class BlackjackGame extends Game {
     public static void main(String[] args) {
         BlackjackGame game = new BlackjackGame("Blackjack");
         Scanner sc = new Scanner(System.in);
+
         while (true) {
             game.resetGame();
             game.dealInitialCards();
+
             while (game.player.getHandValue() < 21) {
                 System.out.println("Your hand: " + game.player.getHand());
                 System.out.print("Hit or Stand? ");
@@ -84,13 +86,14 @@ public class BlackjackGame extends Game {
                     break;
                 }
             }
+
             game.dealerTurn();
             game.determineWinner();
 
             System.out.print("Play again? (y/n): ");
             if (!sc.nextLine().equalsIgnoreCase("y")) break;
         }
-        
+
         sc.close();
     }
 }

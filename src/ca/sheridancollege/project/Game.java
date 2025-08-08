@@ -15,45 +15,27 @@ import java.util.ArrayList;
  * @author Paul Bonenfant Jan 2020
  */
 public abstract class Game {
-
-    private final String name;//the title of the game
-    private ArrayList<Player> players;// the players of the game
+    private String name;
+    private ArrayList<Player> players;
 
     public Game(String name) {
         this.name = name;
-        players = new ArrayList();
+        players = new ArrayList<>();
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @return the players of this game
-     */
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    /**
-     * @param players the players of this game
-     */
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
-    public Card drawCard(Deck deck) {
-        return deck.drawCard();
-    }
-
-    /**
-     * When the game is over, use this method to declare and display a winning player.
-     */
     public void declareWinner(Player player) {
         System.out.println("Winner: " + player.getName());
     }
-
 }

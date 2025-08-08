@@ -11,25 +11,29 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
+
 public class Card {
     private String suit;
     private String rank;
-    
+
     public Card(String suit, String rank) {
         this.suit = suit;
-        this.rank -= rank;
+        this.rank = rank;
     }
-    
+
     public int getValue() {
-        Switch (rank) {
+        switch (rank) {
             case "A": return 11;
-            case "K": case "Q": case "J": return 10,
+            case "K":
+            case "Q":
+            case "J": return 10;
             default: return Integer.parseInt(rank);
         }
     }
-    
+
     @Override
     public String toString() {
         return rank + " of " + suit;
     }
 }
+
