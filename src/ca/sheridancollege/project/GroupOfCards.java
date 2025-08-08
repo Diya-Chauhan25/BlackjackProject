@@ -23,6 +23,7 @@ public class GroupOfCards {
 
     public GroupOfCards(int size) {
         this.size = size;
+        this.cards = new ArrayList<>(); 
     }
 
     /**
@@ -51,5 +52,16 @@ public class GroupOfCards {
     public void setSize(int size) {
         this.size = size;
     }
+    
+    public void addCard(Card card) {
+        cards.add(card);
+    }
 
-}//end class
+    public Card removeCard() {
+        return cards.remove(0);
+    }
+
+    public void clear() {
+        cards.clear();
+    }
+}
