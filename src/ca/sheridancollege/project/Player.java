@@ -13,8 +13,8 @@ package ca.sheridancollege.project;
  */
 public abstract class Player {
 
-    private String name; //the unique name for this player
-
+    protected String name; //the unique name for this player
+    protected ArrayList<Card> hand = new ArrayList<>();
     /**
      * A constructor that allows you to set the player's unique ID
      *
@@ -39,11 +39,28 @@ public abstract class Player {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+    
     /**
      * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
      * with logic to play your game.
      */
     public abstract void play();
 
+    public int getHandValue() {
+        int total = 0;
+        int aces = 0;
+        for (Card card : hand) {
+            total += card.getValue();
+            if (card.getValue() == 11) aces++;
+        }
+        while (total > 21 && aces > 0) {
+            total -= 10;
+            aces--;
+        }
+        return total;
+    }
 }
